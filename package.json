@@ -1,0 +1,24 @@
+{
+  "name": "redux-tutorial",
+  "version": "1.0.0",
+  "description": "Learning everything",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.5.2",
+    "babel-loader": "^6.2.3",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-2": "^6.5.0",
+    "webpack": "^1.12.14"
+  },
+  "dependencies": {
+    "deep-freeze": "0.0.1",
+    "expect": "^1.14.0",
+    "redux": "^3.3.1"
+  }
+}
