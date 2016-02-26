@@ -1,4 +1,4 @@
-import { createStore } from 'redux'
+import { createStore, combineReducers } from 'redux'
 
 const todo = (state, action) => {
     switch (action.type) {
@@ -47,18 +47,36 @@ const visibilityFilter = (
     }
 };
 
-const todoApp = (state = {}, action) => {
-    return {
-        todos: todos(
-            state.todos,
-            action
-        ),
-        visibilityFilter: visibilityFilter(
-            state.visibilityFilter,
-            action
-        )
-    }
-};
+/**
+ * This is the essential magic of redux right here!!!!
+ *
+ * two state reducers COMPOSED together into a new one.
+ * BOOM. And all events from before for BOTH continue
+ * to work.
+ *
+ */
+const todoApp = combineReducers({
+    todos,
+    visibilityFilter
+});
+////^--- using object shorthand from ES6
+
+//same as:
+//const todoApp = (state = {}, action) => {
+//    return {
+//        todos: todos(
+//            state.todos,
+//            action
+//        ),
+//        visibilityFilter: visibilityFilter(
+//            state.visibilityFilter,
+//            action
+//        )
+//    }
+//};
+
+
+
 
 const store = createStore(todoApp);
 
@@ -76,5 +94,17 @@ store.dispatch({
 console.log('Current state:');
 console.log(store.getState());
 console.log('--------------');
+
+
+console.log('Dispatching SET_VISIBILITY_FILTER');
+store.dispatch({
+    type: 'SET_VISIBILITY_FILTER',
+    filter: 'SHOW_COMPLETED'
+});
+
+console.log('Current state:');
+console.log(store.getState());
+console.log('--------------');
+
 
 module.exports = todos;
